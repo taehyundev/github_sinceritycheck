@@ -28,7 +28,7 @@ def init():
 
     ### Make Textfile (JSON) ###
     data = {str(timeNow):info}
-    filename = "models/commit_status/"+name+".json"
+    filename = "data/commit_status/"+name+".json"
     writejson.w_json(filename, data)
 
 
