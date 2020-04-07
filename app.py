@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from modules import crawling
 from modules import writejson
 from modules import readgraph
+from modules import readcsv
 
 def init():
     url = "https://github.com/"+name
@@ -21,16 +22,19 @@ def init():
                 allSum = allSum + info[i] 
 
     ### this Year avg commit ###
-    print("깃허브 월간 평균 커밋수 : "+str(int(allSum/(len(info)-1))) + "개")
+    print("깃허브 월간 평균 커밋수 : "+str(allSum/(len(info)-1)) + "개")
 
-    ### Make Graph ###
-    readgraph.r_graph(info)
 
     ### Make Textfile (JSON) ###
     data = {str(timeNow):info}
     filename = "data/commit_status/"+name+".json"
     writejson.w_json(filename, data)
 
+    ### Read CSV ### 
+    readcsv.r_csv("data/commit_status/"+name+".csv")
+    
+    ### Make Graph/ MAKE CSV ###
+    readgraph.r_graph(info,name)
 
 month = [1,2,3,4,5,6,7,8,9,10,11,12]
 timeNow = str(datetime.today().year)
