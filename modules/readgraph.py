@@ -1,4 +1,6 @@
+import os
 from matplotlib import pyplot as plt
+from datetime import datetime
 import pandas as pd
 from modules import writecsv
 from modules import readcsv
@@ -8,6 +10,7 @@ def r_graph(info,name):
     value = list()
     month= list()
     csvinfo = list()
+    timeNow = str(datetime.today().year)
 
     for i in range(12):
         month.append(str(i+1) + "M")
@@ -23,11 +26,15 @@ def r_graph(info,name):
     print(csvinfo)
 
     ### csv 파일 생성 시각화 자료
-    filename = "data/commit_status/"+name+".csv"
-    writecsv.w_csv(filename, csvinfo)
+    filename = "data/commit_status/"+name+"/"
+    
+    if os.path.isdir(filename) == False:
+        os.mkdir("data/commit_status/"+name+"/")
+    writecsv.w_csv(filename+timeNow+"_info.csv", csvinfo)
+    print("성공")
     
     ### Read CSV ### 
-    readcsv.r_csv("data/commit_status/"+name+".csv")
+    readcsv.r_csv(filename+timeNow+"_info.csv")
     
     ### Read graph ###
     plt.bar(month, value, label="Set 1", color= 'b')

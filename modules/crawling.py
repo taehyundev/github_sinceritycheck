@@ -21,4 +21,5 @@ def commitCheck(url, timeNow):
             if(commitDay == 1):
                 info[commitMonth] =0
             info[commitMonth]  =  info[commitMonth] +int (i["data-count"])
+    
     return info
