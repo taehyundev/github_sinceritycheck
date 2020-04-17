@@ -15,7 +15,7 @@ def r_graph(info,name):
     for i in range(12):
         month.append(str(i+1) + "M")
     for i in range(1, len(info)+1):    
-       if info[i] != 0:
+        if info[i] != None:
            value.append(info[i])
     print(value)
     for i in range(len(info), 12):
