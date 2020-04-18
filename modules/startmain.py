@@ -7,14 +7,15 @@ from modules import writejson
 from modules import readgraph
 from modules import compareuser
 
-def start():
-    name = input("What is your git name ?")
+def start(name):
+    if name == "search":
+        name = input("What is your git name ?")
     url = "https://github.com/"+name
     info = crawling.commitCheck(url,timeNow)
     if not info:
         print("can't search info")
     else:
-        print("<"+timeNow+"년도 깃허브 성실도"+">\n")
+        print("<"+timeNow+"년도 "+name+"님의 깃허브 성실도"+">\n")
 
         ### Result comment ###
         allSum = 0
@@ -30,10 +31,7 @@ def start():
         ### this Year avg commit ###
         print("깃허브 월간 평균 커밋수 : "+str(int(allSum/(cnt-1))) + "개")
 
-        ### 라이벌 이번달 Compare ###
-        user1 = input("Friend1 name : ")
-        user2 = input("Friend2 name : ")
-        compareuser.compareUserntoUserm(user1,user2)
+
         
         ### Make Textfile (JSON) ###
         data = {str(timeNow):info}
@@ -43,7 +41,7 @@ def start():
         writejson.w_json(filename+timeNow+"_info.json", data)
 
         ### Make Graph/ MAKE CSV ###
-        readgraph.r_graph(info,name)
+        #readgraph.r_graph(info,name)
 
 month = [1,2,3,4,5,6,7,8,9,10,11,12]
 timeNow = str(datetime.today().year)
