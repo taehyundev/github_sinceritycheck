@@ -5,7 +5,7 @@ from modules import dataintegration
 import os
 
 while True:
-    sw = int(input("1. 크롤링 \n2. 비교 \n3. 크롤링 유저 리스트\n4. 이번년도 데이터 합치기 >>> "))
+    sw = int(input("1. 크롤링 \n2. 비교 \n3. 크롤링 유저 리스트\n4. 이번년도 데이터 합치기 \n>>> "))
     if sw == 1:
         startmain.start("search")
     elif sw ==2 :
@@ -19,4 +19,6 @@ while True:
     elif sw ==4:
         UserList =getuserlist.get_userList()
         dataintegration.data_integration(UserList)
+    else :
+        continue
 
