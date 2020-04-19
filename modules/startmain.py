@@ -38,10 +38,10 @@ def start(name):
         filename = "data/commit_status/"+name+"/"
         if os.path.isdir(filename) == False:
             os.mkdir("data/commit_status/"+name+"/")
+        print(type(data))
         writejson.w_json(filename+timeNow+"_info.json", data)
-
         ### Make Graph/ MAKE CSV ###
-        #readgraph.r_graph(info,name)
+        readgraph.r_graph(info,name)
 
 month = [1,2,3,4,5,6,7,8,9,10,11,12]
 timeNow = str(datetime.today().year)

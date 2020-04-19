@@ -1,9 +1,11 @@
 from modules import startmain
 from modules import compareuser
+from modules import getuserlist
+from modules import dataintegration
 import os
 
 while True:
-    sw = int(input("1. 크롤링 \n2. 비교 \n3. 크롤링 유저 리스트\n >>> "))
+    sw = int(input("1. 크롤링 \n2. 비교 \n3. 크롤링 유저 리스트\n4. 이번년도 데이터 합치기 >>> "))
     if sw == 1:
         startmain.start("search")
     elif sw ==2 :
@@ -12,8 +14,9 @@ while True:
         user2 = input("Friend2 name : ")
         compareuser.compareUserntoUserm(user1,user2)
     elif sw ==3:
-        files = os.listdir("data/commit_status/")
-        UserList = list()
-        for User in files:
-            UserList.append(User)
+        UserList =getuserlist.get_userList()
         print("user list : "+str(UserList))
+    elif sw ==4:
+        UserList =getuserlist.get_userList()
+        dataintegration.data_integration(UserList)
+

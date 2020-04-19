@@ -30,15 +30,15 @@ def r_graph(info,name):
     
     if os.path.isdir(filename) == False:
         os.mkdir("data/commit_status/"+name+"/")
-    writecsv.w_csv(filename+timeNow+"_info.csv", csvinfo)
+    writecsv.w_csv(filename+timeNow+"_info.csv", csvinfo, name)
     print("성공")
     
     ### Read CSV ### 
     readcsv.r_csv(filename+timeNow+"_info.csv")
     
     ### Read graph ###
-    plt.bar(month, value, label="Set 1", color= 'b')
-    plt.legend()
-    plt.title(name + " Chart")
-    plt.show()
+    #plt.bar(month, value, label="Set 1", color= 'b')
+    #plt.legend()
+    #plt.title(name + " Chart")
+    #plt.show()
 
