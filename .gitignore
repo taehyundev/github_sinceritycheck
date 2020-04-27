@@ -1,3 +1,2 @@
 ### ignore file ###
-
-*.md
+__pycache__
